@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tobey Kim — Project Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .admin-wrap{ max-width:780px; margin:0 auto; padding:48px 32px 80px;}
+  .admin-title{ font-family:'Fraunces',serif; font-weight:400; font-size:2rem; margin-bottom:8px;}
+  .admin-sub{ color:var(--muted); margin-bottom:48px;}
+
+  /* form card */
+  .form-card{
+    border:1px solid var(--line); background:var(--card);
+    border-radius:4px; padding:36px; margin-bottom:48px;
+  }
+  .form-card h2{
+    font-family:'Fraunces',serif; font-weight:400; font-size:1.2rem; margin-bottom:28px;
+  }
+  .field{ margin-bottom:22px; }
+  .field label{
+    display:block; font-family:'JetBrains Mono',monospace; font-size:0.75rem;
+    text-transform:uppercase; letter-spacing:0.06em; color:var(--accent);
+    margin-bottom:7px;
+  }
+  .field input,
+  .field textarea,
+  .field select{
+    width:100%; padding:11px 14px;
+    border:1px solid var(--line); border-radius:3px;
+    background:var(--paper); color:var(--ink);
+    font-family:'Inter',sans-serif; font-size:0.96rem;
+    outline:none; transition:border-color .2s ease;
+    appearance:none;
+  }
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus{ border-color:var(--accent); }
+  .field textarea{ resize:vertical; min-height:90px; }
+  .field .hint{ color:var(--muted); font-size:0.8rem; margin-top:6px; }
+
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 24px; border-radius:3px; cursor:pointer;
+    font-family:'Inter',sans-serif; font-size:0.92rem; font-weight:500;
+    border:none; transition:all .2s ease;
+  }
+  .btn-primary{ background:var(--ink); color:var(--paper); }
+  .btn-primary:hover{ background:#3450D8; }
+  .btn-ghost{ background:transparent; color:var(--muted); border:1px solid var(--line); }
+  .btn-ghost:hover{ border-color:var(--ink); color:var(--ink); }
+  .btn-danger{ background:transparent; color:#c0392b; border:1px solid #e8c0bd; }
+  .btn-danger:hover{ background:#c0392b; color:#fff; }
+
+  /* project list */
+  .proj-list{ display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden; }
+  .proj-row{
+    display:flex; align-items:center; gap:16px;
+    background:var(--card); padding:14px 20px;
+    transition:background .15s ease;
+  }
+  .proj-row:hover{ background:#FCFBF9; }
+  .proj-thumb{
+    width:56px; height:40px; border-radius:2px; overflow:hidden;
+    border:1px solid var(--line); flex-shrink:0;
+    background:var(--paper); display:flex; align-items:center; justify-content:center;
+  }
+  .proj-thumb img{ width:100%; height:100%; object-fit:cover; }
+  .proj-info{ flex:1; min-width:0; }
+  .proj-info strong{ display:block; font-size:0.95rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .proj-info span{ font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--muted); }
+  .proj-actions{ display:flex; gap:8px; flex-shrink:0; }
+  .drag-handle{ cursor:grab; color:var(--muted); padding:4px; font-size:1.1rem; user-select:none; }
+  .drag-handle:active{ cursor:grabbing; }
+
+  /* toast */
+  .toast{
+    position:fixed; bottom:32px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--ink); color:var(--paper); padding:12px 24px; border-radius:3px;
+    font-size:0.88rem; opacity:0; pointer-events:none;
+    transition:all .3s ease; z-index:100; white-space:nowrap;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  .empty-state{
+    background:var(--card); border:1px solid var(--line); border-radius:4px;
+    padding:40px; text-align:center; color:var(--muted);
+  }
+  @media(max-width:600px){ .form-row{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">Tobey Kim</a>
+    <nav>
+      <a href="index.html">← Back to site</a>
+    </nav>
+  </div>
+</header>
+
+<div class="admin-wrap">
+  <p class="mono" style="color:var(--accent); margin-bottom:12px;">// admin</p>
+  <h1 class="admin-title">Project Manager</h1>
+  <p class="admin-sub">Add, remove, or reorder your projects. Changes update the site instantly.</p>
+
+  <!-- ADD FORM -->
+  <div class="form-card">
+    <h2>Add a new project</h2>
+    <div class="form-row">
+      <div class="field">
+        <label>Project Title</label>
+        <input type="text" id="f-title" placeholder="e.g. Brand Identity for X">
+      </div>
+      <div class="field">
+        <label>Tag</label>
+        <select id="f-tag">
+          <option value="Professional">Professional</option>
+          <option value="Personal">Personal</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label>Short Description</label>
+      <textarea id="f-desc" placeholder="One or two sentences shown on hover..."></textarea>
+    </div>
+    <div class="form-row">
+      <div class="field">
+        <label>Image URL</label>
+        <input type="text" id="f-img" placeholder="https://... or filename.jpg">
+        <p class="hint">Paste a full URL or a filename if the image is in your site folder.</p>
+      </div>
+      <div class="field">
+        <label>Case Study Page</label>
+        <input type="text" id="f-href" placeholder="my-project.html">
+        <p class="hint">The .html file for this project's detail page.</p>
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="addProject()">+ Add Project</button>
+  </div>
+
+  <!-- PROJECT LIST -->
+  <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:18px; flex-wrap:wrap; gap:12px;">
+    <h2 style="font-family:'Fraunces',serif; font-weight:400; font-size:1.4rem;">Your Projects</h2>
+    <button class="btn btn-ghost" onclick="exportJS()" style="font-size:0.82rem;">↓ Export projects.js</button>
+  </div>
+  <div id="proj-list-wrap"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="projects.js"></script>
+<script>
+// ---- data ----
+const STORAGE_KEY = 'tk_projects';
+
+function load(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw) return JSON.parse(raw);
+  }catch(e){}
+  // first run — seed from projects.js
+  save([...projects]);
+  return [...projects];
+}
+
+function save(list){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+}
+
+// ---- render list ----
+function render(){
+  const list = load();
+  const wrap = document.getElementById('proj-list-wrap');
+  if(!list.length){
+    wrap.innerHTML = '<div class="empty-state">No projects yet — add one above.</div>';
+    return;
+  }
+  wrap.innerHTML = `<div class="proj-list" id="sortable">` +
+    list.map((p,i) => `
+      <div class="proj-row" draggable="true" data-index="${i}">
+        <span class="drag-handle" title="Drag to reorder">⠿</span>
+        <div class="proj-thumb">
+          <img src="${p.img}" alt="${p.title}" onerror="this.style.display='none'">
+        </div>
+        <div class="proj-info">
+          <strong>${p.title}</strong>
+          <span>${p.tag} · ${p.href}</span>
+        </div>
+        <div class="proj-actions">
+          <button class="btn btn-danger" style="padding:6px 12px; font-size:0.8rem;" onclick="removeProject(${i})">Remove</button>
+        </div>
+      </div>
+    `).join('') +
+  `</div>`;
+  initDrag();
+}
+
+// ---- add ----
+function addProject(){
+  const title = document.getElementById('f-title').value.trim();
+  const tag   = document.getElementById('f-tag').value;
+  const desc  = document.getElementById('f-desc').value.trim();
+  const img   = document.getElementById('f-img').value.trim();
+  const href  = document.getElementById('f-href').value.trim();
+  if(!title || !desc || !img || !href){ showToast('Please fill in all fields.'); return; }
+  const list = load();
+  list.push({title, tag, desc, img, href});
+  save(list);
+  // clear form
+  ['f-title','f-desc','f-img','f-href'].forEach(id => document.getElementById(id).value = '');
+  render();
+  showToast('Project added ✓');
+}
+
+// ---- remove ----
+function removeProject(i){
+  if(!confirm('Remove this project?')) return;
+  const list = load();
+  list.splice(i,1);
+  save(list);
+  render();
+  showToast('Project removed.');
+}
+
+// ---- drag to reorder ----
+let dragSrc = null;
+function initDrag(){
+  document.querySelectorAll('.proj-row').forEach(row => {
+    row.addEventListener('dragstart', e => {
+      dragSrc = row;
+      e.dataTransfer.effectAllowed = 'move';
+      row.style.opacity = '0.4';
+    });
+    row.addEventListener('dragend', () => { row.style.opacity = ''; });
+    row.addEventListener('dragover', e => { e.preventDefault(); e.dataTransfer.dropEffect='move'; });
+    row.addEventListener('drop', e => {
+      e.preventDefault();
+      if(dragSrc === row) return;
+      const list = load();
+      const from = +dragSrc.dataset.index;
+      const to   = +row.dataset.index;
+      const [item] = list.splice(from, 1);
+      list.splice(to, 0, item);
+      save(list);
+      render();
+    });
+  });
+}
+
+// ---- export ----
+function exportJS(){
+  const list = load();
+  const body = list.map(p => `  {
+    title: ${JSON.stringify(p.title)},
+    tag:   ${JSON.stringify(p.tag)},
+    desc:  ${JSON.stringify(p.desc)},
+    img:   ${JSON.stringify(p.img)},
+    href:  ${JSON.stringify(p.href)}
+  }`).join(',\n');
+  const content = `// Tobey Kim — project data\n// Edit here or use admin.html\nconst projects = [\n${body}\n];\n`;
+  const blob = new Blob([content], {type:'text/javascript'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'projects.js';
+  a.click();
+  showToast('projects.js downloaded ✓');
+}
+
+// ---- toast ----
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+render();
+</script>
+</body>
+</html>
