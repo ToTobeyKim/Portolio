@@ -163,7 +163,80 @@
   .work{ padding:60px 0 40px; }
   .section-head{ margin-bottom:32px; }
 }
+
+/* ---- CODE BLOCK ---- */
+.hero{padding:44px 0 90px;}
+.code{max-width:600px;margin-top:28px;padding:20px 8px 18px;border:1px solid var(--line);border-radius:4px;background:transparent;font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--ink);}
+.cta{color:var(--accent);padding:0 22px 12px;display:flex;align-items:center;gap:10px;}
+.cta::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 1.6s infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(52,80,216,.5);}100%{box-shadow:0 0 0 10px rgba(52,80,216,0);}}
+.ln{display:flex;align-items:center;gap:18px;padding:5px 22px;min-height:2.1em;}
+.ln b{width:16px;text-align:right;color:#bdb8ad;font-weight:400;user-select:none;}
+.ln span{user-select:none;}
+.cm{color:var(--muted);font-style:italic;}.kw{color:var(--accent);}.str{color:var(--ink);}.pn{color:var(--muted);}
+.ln input{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-bottom:2px solid var(--accent);border-radius:3px;outline:0;padding:4px 8px;margin:0 3px;min-width:12ch;caret-color:var(--accent);transition:box-shadow .2s;}
+.code.idle .ln input{animation:ring 2s infinite;}
+@keyframes ring{0%,100%{box-shadow:0 0 0 0 rgba(52,80,216,0);}50%{box-shadow:0 0 0 5px rgba(52,80,216,.18);}}
+.ln input:focus{box-shadow:0 0 0 4px rgba(52,80,216,.2);animation:none;}
+.ln input::placeholder{color:var(--muted);opacity:.7;}
+#run{margin-left:auto;font:inherit;font-size:.8rem;background:var(--ink);color:var(--paper);border:0;border-radius:3px;padding:8px 16px;cursor:pointer;transition:background .2s;}
+#run:hover{background:var(--accent);}
+.ln.out{color:var(--accent);font-size:.9rem;}
+/* ---- PHYSICS STAGE (the intro) ---- */
+.stage{position:relative;min-height:clamp(430px,64vh,620px);padding:40px;border:1px solid var(--line);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;justify-content:center;cursor:grab;touch-action:pan-y;}
+.stage>*{position:relative;z-index:1;pointer-events:none;}
+.stage #clear{position:absolute;z-index:3;right:12px;bottom:10px;pointer-events:auto;font:inherit;background:var(--card);border:1px solid var(--ink);color:var(--ink);border-radius:3px;padding:5px 12px;cursor:pointer;box-shadow:0 4px 12px -6px rgba(25,24,28,.3);}
+.stage #clear:hover{background:var(--ink);color:var(--paper);}
+.hero-foot{margin-top:32px;}
+.word{position:absolute;left:0;top:0;z-index:2;padding:.1em .38em;background:#fff;border:1px solid var(--line);border-radius:4px;box-shadow:0 6px 16px -8px rgba(25,24,28,.25);line-height:1.15;white-space:nowrap;user-select:none;pointer-events:none;will-change:transform;}
+/* ---- ENDLESS MAP ---- */
+.map{position:relative;height:clamp(420px,76vh,760px);overflow:hidden;border:1px solid var(--line);cursor:grab;touch-action:none;user-select:none;background-color:var(--paper);background-image:radial-gradient(var(--line) 1.2px,transparent 1.2px);background-size:26px 26px;}
+.map.grab{cursor:grabbing;}
+.map::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 90px 30px var(--paper);}
+.world{position:absolute;left:0;top:0;will-change:transform;}
+.tile{position:absolute;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:#fff;display:block;}
+.tile img{width:100%;height:100%;object-fit:cover;filter:grayscale(45%);opacity:.9;transition:filter .4s,opacity .4s,transform .5s;pointer-events:none;}
+.tile:hover img{filter:none;opacity:1;transform:scale(1.06);}
+.t-info{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;color:#fff;background:linear-gradient(180deg,rgba(25,24,28,0) 40%,rgba(25,24,28,.9));opacity:0;transition:opacity .3s;}
+.tile:hover .t-info{opacity:1;}
+.t-info .mono{color:rgba(255,255,255,.7);margin-bottom:5px;}
+.t-info h3{font-family:'Fraunces',serif;font-weight:500;font-size:1.15rem;}
+.t-info p{font-size:.82rem;line-height:1.45;color:rgba(255,255,255,.82);margin-top:6px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+.hud{position:absolute;z-index:3;color:var(--muted);pointer-events:none;}
+.hud.a{left:14px;top:12px;}.hud.b{right:14px;bottom:12px;}
+@media(hover:none){.t-info{opacity:1;background:linear-gradient(180deg,rgba(25,24,28,0) 55%,rgba(25,24,28,.85));}.t-info p{display:none;}}
+@media(max-width:600px){.stage{padding:24px;min-height:clamp(380px,60vh,520px);}.map{height:64vh;}.hero h1{font-size:2rem;}}
+
+/* ---- RIVER-STYLE MAP + STATIC GRID ---- */
+.mapsec{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:44px 0;position:relative;}
+.mapsec .river-label{padding:0 32px 20px;}
+.mapsec::before,.mapsec::after{content:"";position:absolute;top:0;bottom:0;width:140px;z-index:4;pointer-events:none;}
+.mapsec::before{left:0;background:linear-gradient(to right,var(--paper) 35%,transparent);}
+.mapsec::after{right:0;background:linear-gradient(to left,var(--paper) 35%,transparent);}
+.map{height:clamp(460px,72vh,720px);border:0;border-radius:0;}
+@media(max-width:600px){.map{height:62vh;}}
+.map::after{display:none;}
+.work{padding:80px 0 60px;}
+.grid .card:last-child:nth-child(odd){grid-column:1/-1;}
+@media(max-width:600px){.mapsec .river-label{padding:0 18px 16px;}.mapsec::before,.mapsec::after{width:60px;}}
+
+/* ---- scroll-trap relief ---- */
+.mapsec .river-label{position:relative;z-index:5;}
+.skip{color:var(--accent);}.skip:hover{text-decoration:underline;}
+.map::before{content:"drag to explore";position:absolute;z-index:3;left:50%;bottom:16px;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--muted);background:var(--paper);border:1px solid var(--line);padding:6px 14px;border-radius:999px;pointer-events:none;transition:opacity .25s;white-space:nowrap;}
+.map.engaged::before{opacity:0;}
+@media(max-width:600px){.map{height:56vh;}.map::before{content:"drag to explore";}}
+
+/* ---- no accidental text selection while playing ---- */
+.stage,.stage *{-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;}
+.stage ::selection{background:transparent;}
+
+.map::before{display:none;}
+.map.engaged{outline:2px solid var(--accent);outline-offset:-2px;}
+.mapskip{position:absolute;z-index:5;left:50%;bottom:16px;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--card);color:var(--ink);border:1px solid var(--ink);border-radius:999px;padding:8px 16px;cursor:pointer;transition:background .2s,color .2s;}
+.mapskip:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Archivo+Black&family=Bebas+Neue&family=Caveat:wght@600&family=DM+Serif+Display&family=Pacifico&family=Permanent+Marker&family=Playfair+Display:wght@700&family=Rubik+Mono+One&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -180,31 +253,35 @@
 
 <section class="hero">
   <div class="wrap">
-    <span class="mono hero-eyebrow">hello</span>
-    <h1>I design experiences that bridge <em>technology</em> and human behavior.</h1>
-    <p class="mono hero-close">end of intro</p>
+    <div class="stage" id="stage">
+      <span class="mono hero-eyebrow">hello</span>
+      <h1>I design experiences that bridge <em>technology</em> and human behavior.</h1>
+      <p class="mono hero-close">end of intro</p>
+      <button id="clear" class="mono">clear</button>
+    </div>
+    <div class="code idle" id="codebox">
+      <p class="mono cta">your turn, type here and press Enter</p>
+      <div class="ln"><b>1</b><span class="cm"># whatever you print lands in the box above</span></div>
+      <div class="ln"><b>2</b><span><span class="kw">print</span><span class="pn">(</span><span class="str">"</span></span><input id="in" maxlength="24" size="12" placeholder="type here" spellcheck="false" autocomplete="off" aria-label="Text to print"><span><span class="str">"</span><span class="pn">)</span></span><button id="run" type="button">▶ Run</button></div>
+      <div class="ln out"><b></b><span id="out">&gt;&gt;&gt;</span></div>
+    </div>
     <div class="hero-foot">
-      <p>Brand systems, product design, and editorial work. Eleven projects, professional and personal, below.</p>
-      <span class="mono scroll-cue">scroll to view work ↓</span>
+      <p>Brand systems, product design, and editorial work, eleven projects, professional and personal, below.</p>
+      <span class="mono scroll-cue">drag the words, then scroll to view work ↓</span>
     </div>
   </div>
 </section>
 
-<!-- LAZY RIVER: 3 rows, different speeds -->
-<section class="river">
-  <p class="mono river-label">// selected works</p>
-  <div class="river-rows">
-    <div class="river-row"><div class="river-inner" id="rrow-0"></div></div>
-    <div class="river-row"><div class="river-inner" id="rrow-1"></div></div>
-    <div class="river-row"><div class="river-inner" id="rrow-2"></div></div>
-  </div>
+<section class="mapsec">
+  <p class="mono river-label" style="display:flex;justify-content:space-between;gap:16px;"><span>// selected works, click the map, then scroll or drag</span><span><a class="skip" href="#work">skip to projects ↓</a> &nbsp;<span id="coords">x 0 · y 0</span></span></p>
+  <div class="map" id="map"><div class="world" id="world"></div><button class="mapskip" id="mapskip" type="button">skip to projects ↓</button></div>
 </section>
 
 <section class="work" id="work">
   <div class="wrap">
     <div class="section-head">
       <h2>Work</h2>
-      <span class="mono" id="project-count">08 projects</span>
+      <span class="mono" id="project-count">11 projects</span>
     </div>
     <div class="acc-wrap" id="project-grid"></div>
   </div>
@@ -221,6 +298,7 @@
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
 <script src="projects.js"></script>
 <script>
 const activeProjects = projects;
@@ -228,63 +306,111 @@ const activeProjects = projects;
 document.getElementById('project-count').textContent =
   String(activeProjects.length).padStart(2,'0') + ' projects';
 
-// ---- LAZY RIVER ----
-const CARD_W = 160, GAP = 10;
-// each row shuffles projects slightly so rows look different
-function shuffle(arr, seed){
-  const a = [...arr]; let s = seed;
-  for(let i=a.length-1;i>0;i--){s=(s*1664525+1013904223)&0xffffffff; const j=Math.abs(s)%(i+1);[a[i],a[j]]=[a[j],a[i]];}
-  return a;
+// ---- PHYSICS WORDS ----
+const {Engine,Bodies,Body,Composite,Mouse,MouseConstraint,Runner,Events}=Matter;
+const stage=document.getElementById('stage'), input=document.getElementById('in'), out=document.getElementById('out');
+const FONTS=['Abril Fatface','Archivo Black','Bebas Neue','Caveat','DM Serif Display','Fraunces','Inter','JetBrains Mono','Pacifico','Permanent Marker','Playfair Display','Rubik Mono One','Space Grotesk'];
+const COLORS=['#19181C','#19181C','#3450D8','#D8452F','#8C887E'];
+const engine=Engine.create(); Runner.run(Runner.create(),engine);
+let W=0,H=0,walls=[],words=[];
+function buildWalls(){
+  W=stage.clientWidth; H=stage.clientHeight;
+  Composite.remove(engine.world,walls);
+  const t=200,o={isStatic:true,friction:.6};
+  walls=[Bodies.rectangle(W/2,H+t/2,W+2*t,t,o),Bodies.rectangle(-t/2,H/2-300,t,H+1000,o),
+         Bodies.rectangle(W+t/2,H/2-300,t,H+1000,o),Bodies.rectangle(W/2,-700-t/2,W+2*t,t,o)];
+  Composite.add(engine.world,walls);
 }
+buildWalls(); addEventListener('resize',buildWalls);
+stage.addEventListener('selectstart',e=>e.preventDefault());
+const mouse=Mouse.create(stage);
+mouse.element.removeEventListener('mousewheel',mouse.mousewheel);
+mouse.element.removeEventListener('DOMMouseScroll',mouse.mousewheel);
+Composite.add(engine.world,MouseConstraint.create(engine,{mouse,constraint:{stiffness:.2,render:{visible:false}}}));
+Events.on(engine,'afterUpdate',()=>words.forEach(w=>{
+  const p=w.body.position;
+  w.el.style.transform=`translate(${p.x-w.w/2}px,${p.y-w.h/2}px) rotate(${w.body.angle}rad)`;
+}));
+async function spawn(text){
+  const font=FONTS[Math.random()*FONTS.length|0];
+  let size=28+Math.random()*34;
+  try{await document.fonts.load(`${size}px "${font}"`,text);}catch(e){}
+  const el=document.createElement('span');
+  el.className='word'; el.textContent=text;
+  el.style.cssText=`font-family:"${font}",serif;font-size:${size}px;color:${COLORS[Math.random()*COLORS.length|0]};transform:translate(-999px,-999px)`;
+  stage.appendChild(el);
+  let w=el.offsetWidth;
+  if(w>W-24){size*=(W-24)/w; el.style.fontSize=size+'px'; w=el.offsetWidth;}
+  const h=el.offsetHeight;
+  const body=Bodies.rectangle(Math.max(w/2+4,Math.min(W-w/2-4,Math.random()*W)),-h-20,w,h,{restitution:.35,friction:.4,angle:(Math.random()-.5)*.6});
+  Body.setVelocity(body,{x:(Math.random()-.5)*4,y:0});
+  Composite.add(engine.world,body);
+  words.push({el,body,w,h});
+  if(words.length>60){const o=words.shift();Composite.remove(engine.world,o.body);o.el.remove();}
+}
+function run(){
+  const text=input.value.replace(/["'\\]/g,'').trim();
+  if(!text) return;
+  out.textContent='>>> '+text; spawn(text); input.value=''; input.size=12;
+}
+input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();run();}});
+input.addEventListener('input',()=>{input.size=Math.max(12,input.value.length+1);});
+document.getElementById('run').addEventListener('click',run);
+document.getElementById('clear').addEventListener('click',()=>{words.forEach(w=>{Composite.remove(engine.world,w.body);w.el.remove();});words=[];out.textContent='>>>';});
+input.addEventListener('input',()=>document.getElementById('codebox').classList.remove('idle'),{once:true});
+setTimeout(()=>spawn('hello'),700);
 
-const rowConfigs = [
-  { id:'rrow-0', speed:0.38, dir: 1  },
-  { id:'rrow-1', speed:0.62, dir:-1  },
-  { id:'rrow-2', speed:0.90, dir: 1  },
-];
-
-const cardHTML = p =>
-  `<a class="river-card" href="${p.href}">
-    <img src="${p.img}" alt="${p.title}" loading="lazy">
-    <span class="river-card-title">${p.title}</span>
-  </a>`;
-
-rowConfigs.forEach((cfg, ri) => {
-  const inner = document.getElementById(cfg.id);
-  const pool = shuffle(activeProjects, ri * 31337);
-  // triple-duplicate so there's always content visible at any speed
-  const html = [...pool,...pool,...pool].map(cardHTML).join('');
-  inner.innerHTML = html;
-
-  // half of the tripled set for loop reset point
-  cfg.halfW = pool.length * (CARD_W + GAP);
-  // reverse rows start at halfW so they scroll left-to-right
-  cfg.pos = cfg.dir === -1 ? cfg.halfW : 0;
-  cfg.paused = false;
-  cfg.inner = inner;
-
-  inner.querySelectorAll('.river-card').forEach(card => {
-    card.addEventListener('mouseenter', () => cfg.paused = true);
-    card.addEventListener('mouseleave', () => cfg.paused = false);
-  });
+// ---- ENDLESS PROJECT MAP ----
+const vp=document.getElementById('map'), world=document.getElementById('world'), coords=document.getElementById('coords');
+const tiles=new Map(); let ox=0,oy=0,vx=0,vy=0,drag=false,moved=0,lx=0,ly=0,captured=false,started=false;
+const dims=()=>{const t=vp.clientWidth<=600;return{TW:t?160:210,TH:t?200:265,G:14};};
+function render(){
+  const {TW,TH,G}=dims(), SX=TW+G, SY=TH+G, w=vp.clientWidth, h=vp.clientHeight;
+  if(!started){ox=w/2-TW/2;oy=h/2-TH/2;started=true;}
+  const c0=Math.floor(-ox/SX)-1,c1=Math.ceil((w-ox)/SX)+1,r0=Math.floor(-oy/SY)-2,r1=Math.ceil((h-oy)/SY)+2,keep=new Set(),n=projects.length;
+  for(let c=c0;c<=c1;c++)for(let r=r0;r<=r1;r++){
+    const k=c+','+r; keep.add(k);
+    if(tiles.has(k)) continue;
+    const p=projects[(((c+r*3)%n)+n)%n], a=document.createElement('a');
+    a.className='tile'; a.href=p.href; a.draggable=false;
+    a.style.cssText=`width:${TW}px;height:${TH}px;left:${c*SX}px;top:${r*SY+(Math.abs(c)%2?SY/2:0)}px`;
+    a.innerHTML=`<img src="${p.img}" alt="${p.title}" draggable="false"><div class="t-info"><span class="mono">${p.tag} // ${c},${r}</span><h3>${p.title}</h3><p>${p.desc}</p></div>`;
+    world.appendChild(a); tiles.set(k,a);
+  }
+  tiles.forEach((el,k)=>{if(!keep.has(k)){el.remove();tiles.delete(k);}});
+  world.style.transform=`translate(${ox}px,${oy}px)`;
+  vp.style.backgroundPosition=`${ox}px ${oy}px`;
+  coords.textContent=`x ${Math.round(-(ox-w/2)/SX)} · y ${Math.round(-(oy-h/2)/SY)}`;
+}
+vp.addEventListener('pointerdown',e=>{drag=true;captured=false;moved=0;lx=e.clientX;ly=e.clientY;vx=vy=0;});
+vp.addEventListener('pointermove',e=>{
+  if(!drag) return;
+  const dx=e.clientX-lx,dy=e.clientY-ly; lx=e.clientX; ly=e.clientY; moved+=Math.abs(dx)+Math.abs(dy);
+  if(moved>6&&!captured){captured=true;vp.setPointerCapture(e.pointerId);vp.classList.add('grab','engaged');}
+  ox+=dx;oy+=dy;vx=dx;vy=dy;render();
 });
+const end=()=>{drag=false;vp.classList.remove('grab');};
+vp.addEventListener('pointerup',end); vp.addEventListener('pointercancel',end);
+vp.addEventListener('click',e=>{if(moved>6)e.preventDefault();},true);
+vp.addEventListener('dragstart',e=>e.preventDefault());
+let engaged=false;
+const setEngaged=v=>{engaged=v;vp.classList.toggle('engaged',v);};
+vp.addEventListener('pointerdown',()=>setEngaged(true));
+document.addEventListener('pointerdown',e=>{if(!vp.contains(e.target))setEngaged(false);});
+addEventListener('keydown',e=>{if(e.key==='Escape')setEngaged(false);});
+vp.addEventListener('wheel',e=>{if(!engaged||e.ctrlKey)return;e.preventDefault();ox-=e.deltaX;oy-=e.deltaY;vx=vy=0;render();},{passive:false});
+const skipBtn=document.getElementById('mapskip');
+skipBtn.addEventListener('pointerdown',e=>e.stopPropagation());
+skipBtn.addEventListener('click',()=>{setEngaged(false);document.getElementById('work').scrollIntoView({behavior:'smooth'});});
+(function loop(){if(!drag&&(Math.abs(vx)>.1||Math.abs(vy)>.1)){ox+=vx;oy+=vy;vx*=.94;vy*=.94;render();}requestAnimationFrame(loop);})();
+addEventListener('resize',()=>{tiles.forEach(el=>el.remove());tiles.clear();render();});
+render();
 
-function tick(){
-  rowConfigs.forEach(cfg => {
-    if(cfg.paused) return;
-    cfg.pos += cfg.speed * cfg.dir;
-    if(cfg.dir > 0 && cfg.pos >= cfg.halfW * 2) cfg.pos = cfg.halfW;
-    if(cfg.dir < 0 && cfg.pos <= 0)              cfg.pos = cfg.halfW;
-    cfg.inner.style.transform = `translateX(${-cfg.pos}px)`;
-  });
-  requestAnimationFrame(tick);
-}
-requestAnimationFrame(tick);
-
-// ---- ACCORDION GRID ----
-const grid = document.getElementById('project-grid');
-function rowHTML(items, offset){
-  return `<div class="acc-row">` + items.map((p,i) => `
+// ---- ACCORDION PROJECTS ----
+document.getElementById('project-count').textContent=String(projects.length).padStart(2,'0')+' projects';
+const accGrid=document.getElementById('project-grid');
+function rowHTML(items,offset){
+  return `<div class="acc-row">`+items.map((p,i)=>`
     <a class="acc-item" href="${p.href}">
       <img src="${p.img}" alt="${p.title}" loading="lazy">
       <div class="acc-label">
@@ -292,11 +418,17 @@ function rowHTML(items, offset){
         <h3>${p.title}</h3>
         <p>${p.desc}</p>
       </div>
-    </a>`).join('') + `</div>`;
+    </a>`).join('')+`</div>`;
 }
-for(let i=0; i<activeProjects.length; i+=4){
-  grid.innerHTML += rowHTML(activeProjects.slice(i,i+4), i);
-}
+for(let i=0;i<projects.length;i+=4) accGrid.innerHTML+=rowHTML(projects.slice(i,i+4),i);
+accGrid.addEventListener('click',e=>{
+  if(!matchMedia('(hover: none)').matches) return;
+  const item=e.target.closest('.acc-item'); if(!item) return;
+  const active=document.querySelector('.acc-item.tapped');
+  if(active&&active!==item) active.classList.remove('tapped');
+  if(item.classList.contains('tapped')){window.location.href=item.getAttribute('href');}
+  else{e.preventDefault();item.classList.add('tapped');}
+});
 </script>
 
 </body>
