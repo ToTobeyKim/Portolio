@@ -386,3 +386,7 @@ nav a.resume:hover{color:var(--ink);}
 :root{--gutter:clamp(24px,8vw,140px);}
 .wrap{max-width:1900px;padding:0 var(--gutter);}
 .header-inner{max-width:1900px;padding:20px var(--gutter);}
+
+/* bigger name for contrast against the small menu */
+.logo{font-size:2.3rem;font-weight:600;line-height:1;letter-spacing:-.01em;}
+@media(max-width:600px){.logo{font-size:1.7rem;}}
