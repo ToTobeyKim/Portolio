@@ -1,0 +1,117 @@
+IMAGES FOLDER
+Drop your image files in this folder using the exact file names below.
+Every page already points to images/<file name>. [here] = already in this folder, [add] = still needs to be dropped in.
+
+== helvetica.html
+  [here] IMG_0373.jpg   (Helvetica book cover)
+  [here] IMG_0376.jpg   (Helvetica research spread)
+  [here] IMG_0377.jpg   (Print spread 1)
+  [here] IMG_0387.jpg   (Print spread 2)
+  [here] IMG_0388.jpg   (Physical book 1)
+  [here] IMG_0392.jpg   (Physical book 2)
+  [here] IMG_0394.jpg   (Physical book 3)
+  [here] IMG_0406.jpg   (Physical book detail)
+  [here] IMG_0406.jpg   (Final spread detail)
+
+== amelie.html
+  [here] IMG_0488.jpg   (Concept development)
+  [here] IMG_0489.jpg   (Layout sketches)
+  [here] IMG_0492.jpg   (Book interior 1)
+  [here] IMG_0494.jpg   (Book interior 2)
+  [here] IMG_0501.jpg   (Production detail 1)
+  [here] IMG_0504.jpg   (Production detail 2)
+  [here] IMG_0509.jpg   (Final book 1)
+  [here] IMG_0512.jpg   (Final book 2)
+
+== ariadne.html
+  [here] slide_01.jpg   (Ariadne cover slide)
+  [here] slide_02.jpg   (Fast fashion vs sustainable fashion)
+  [here] slide_07.jpg   (Meet the team)
+  [here] slide_08.jpg   (Stakeholder map)
+  [here] slide_09.jpg   (Stakeholder quotes)
+  [here] slide_19.jpg   (Affinitization, 160 yellow notes, 19 themes, 8 insights)
+  [here] slide_20.jpg   (App framework overview)
+  [here] slide_21.jpg   (Price Per Wear feature)
+  [here] slide_22.jpg   (Premium Quality feature)
+  [here] slide_23.jpg   (Sustainability Score feature)
+  [here] slide_24.jpg   (How the score works)
+  [here] slide_25.jpg   (Circularity feature)
+  [here] slide_26.jpg   (Decision guide flow)
+  [here] slide_27.jpg   (Clothing Decision Guide user flow)
+  [here] slide_28.jpg   (Brand Transparency feature)
+  [here] slide_29.jpg   (Influencer promotion strategy)
+  [here] slide_30.jpg   (Ariadne logo)
+  [here] slide_31.jpg   (Color palette)
+  [here] slide_32.jpg   (Typeface, Figtree)
+
+== let-there-be-light.html
+  [add] Screenshot-2026-02-15-at-1.59.50-PM.png   (let there be Light)
+  [add] Screenshot-2026-02-15-at-1.59.50-PM-723x1024.png   (Poster detail)
+  [add] Garamond-1.jpeg   (Garamond specimen)
+
+== intent-collective.html
+  [add] Intent-Wordmark-600px.jpg   (Intent Collective)
+  [add] intent_statement-1024x213.png   (Intent statement)
+  [add] intent_grid.png   (Intent grid construction)
+  [add] intent_red.png   (Intent dark mode lockup)
+  [add] gotham-991x1024.png   (Gotham typeface specimen)
+
+== delight.html
+  [add] delight_600-1.png   (Delight)
+  [add] delight_i.png   (Delight italic i detail)
+  [add] delight_horizontal.png   (Delight horizontal lockup)
+  [add] delight_card.png   (Delight business card)
+  [add] archer.jpg   (Archer typeface specimen)
+
+== epic-games-library.html
+  [add] image-7-1024x576.png   (Epic Games Library)
+  [add] image-4.png   (Epic Games material design)
+  [add] image-1.png   (Competitive analysis)
+  [add] image-2-1024x863.png   (Persona 1)
+  [add] image-3.png   (Persona 2)
+  [add] image-6.png   (User flow and journey)
+  [add] image-8-1024x590.png   (Wireframe)
+  [add] image-11-1024x731.png   (Final design 1)
+  [add] image-10-1024x729.png   (Final design 2)
+
+== google-focus.html
+  [add] googlefocus_logo.png   (Google Focus)
+  [add] image-13.png   (User flow)
+  [add] image-14-1024x204.png   (Wireframe 1)
+  [add] image-15-1024x203.png   (Wireframe 2)
+  [add] googlefocus_flow1-1024x981.png   (Final flow 1)
+  [add] googlefocus_flow2-1-1024x736.png   (Final flow 2)
+
+== overeasy.html
+  [add] overeasy_logo2.png   (OverEasy)
+  [add] overeasy_logo-1-1022x1024.png   (OverEasy logo)
+  [add] overeasy_joanna.png   (OverEasy persona)
+  [add] overeasy_userflow.png   (User flow)
+  [add] Overeasy_wire-1024x411.png   (Wireframe)
+  [add] overeasy_02-1024x517.png   (Final design 1)
+  [add] overeasy_03-1024x590.png   (Final design 2)
+  [add] overeasy_04-1024x691.png   (Final design 3)
+  [add] OverEasy-BrandGuideline-1024x576.jpg   (Brand guideline 1)
+  [add] OverEasy-BrandGuideline_3-1024x576.jpg   (Brand guideline 2)
+
+== doordash.html
+  [add] doordash_logo.png   (Doordash)
+  [add] image-17-1024x622.png   (User flow)
+  [add] image-18-1024x743.png   (Design outcome)
+  [add] doordash_flow1-382x1024.png   (Final flow 1)
+  [add] doordash_flow2-1024x902.png   (Final flow 2)
+  [add] doordash_flow3-1024x825.png   (Final flow 3)
+
+== deadlock-magazine.html
+  [add] Screenshot-2026-02-14-at-11.31.06-AM-e1771086842480.png   (Deadlock Publication)
+  [add] Screenshot-2026-02-14-at-11.31.06-AM-1-778x1024.png   (Cover spread)
+  [add] Screenshot-2026-02-14-at-11.40.22-AM-1-1024x670.png   (Table of contents)
+  [add] Screenshot-2026-02-14-at-11.40.32-AM-1024x682.png   (Full spread introduction)
+  [add] image-2-846x1024.png   (Typography spread)
+  [add] Screenshot-2026-02-14-at-11.48.44-AM-1024x570.png   (Type detail)
+  [add] Screenshot-2026-02-14-at-11.40.51-AM-1024x670.png   (Grid spread 1)
+  [add] Screenshot-2026-02-14-at-11.42.33-AM-2-1024x667.png   (Grid spread 2)
+  [add] Screenshot-2026-02-14-at-11.41.00-AM-1024x673.png   (Spread)
+  [add] Screenshot-2026-02-14-at-11.41.11-AM-1024x669.png   (Spread)
+
+== homepage thumbnails come from projects.js (same images/ paths).
