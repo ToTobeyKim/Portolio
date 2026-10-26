@@ -321,6 +321,11 @@ nav a:hover{text-decoration:underline;text-underline-offset:5px;}
 .stage>.prompt{padding:18px 0;background:transparent;}
 .stage #clear{right:0;}
 @media(max-width:700px){.stage{padding:28px 0 150px;}.stage>.prompt{padding:14px 0;}}
+
+/* ---- menu baseline, phone-friendly stage ---- */
+header .header-inner,header nav{align-items:baseline;}
+.stage{height:clamp(540px,82vh,860px);height:clamp(540px,82svh,860px);}
+@media(max-width:700px){.stage{height:clamp(460px,66vh,640px);height:clamp(460px,66svh,640px);}}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Archivo+Black&family=Bebas+Neue&family=Caveat:wght@600&family=DM+Serif+Display&family=Pacifico&family=Permanent+Marker&family=Playfair+Display:wght@700&family=Rubik+Mono+One&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -361,7 +366,7 @@ nav a:hover{text-decoration:underline;text-underline-offset:5px;}
   <div class="wrap">
     <div class="section-head">
       <h2>Work</h2>
-      <span class="mono" id="project-count">11 projects</span>
+      
     </div>
     <div class="pgrid" id="project-grid"></div>
   </div>
@@ -391,8 +396,7 @@ nav a:hover{text-decoration:underline;text-underline-offset:5px;}
 <script>
 const activeProjects = projects;
 
-document.getElementById('project-count').textContent =
-  String(activeProjects.length).padStart(2,'0') + ' projects';
+
 
 // ---- PHYSICS WORDS ----
 const {Engine,Bodies,Body,Composite,Mouse,MouseConstraint,Runner,Events}=Matter;
@@ -408,14 +412,29 @@ function buildWalls(){
   walls=[Bodies.rectangle(W/2,H-BAR+t/2,W+2*t,t,o),Bodies.rectangle(-t/2,H/2-300,t,H+1000,o),
          Bodies.rectangle(W+t/2,H/2-300,t,H+1000,o),Bodies.rectangle(W/2,-700-t/2,W+2*t,t,o)];
   Composite.add(engine.world,walls);
+  words.forEach(w=>{const p=w.body.position,fy=H-BAR-w.h/2;if(p.y>fy)Body.setPosition(w.body,{x:Math.min(Math.max(p.x,w.w/2),W-w.w/2),y:fy-2});});
 }
-buildWalls(); addEventListener('resize',buildWalls); addEventListener('load',buildWalls);
+buildWalls(); addEventListener('resize',()=>{if(stage.clientWidth!==W)buildWalls();}); addEventListener('load',buildWalls);
 stage.addEventListener('selectstart',e=>e.preventDefault());
 const mouse=Mouse.create(stage);
 mouse.element.removeEventListener('mousewheel',mouse.mousewheel);
 mouse.element.removeEventListener('DOMMouseScroll',mouse.mousewheel);
 Composite.add(engine.world,MouseConstraint.create(engine,{mouse,constraint:{stiffness:.2,render:{visible:false}}}));
 ['mousedown','touchstart'].forEach(t=>{codebox.addEventListener(t,e=>e.stopPropagation(),{passive:true});document.getElementById('clear').addEventListener(t,e=>e.stopPropagation(),{passive:true});});
+// touch: only grab a word if the finger lands on one, otherwise the page scrolls normally
+mouse.element.removeEventListener('touchstart',mouse.mousedown);
+mouse.element.removeEventListener('touchmove',mouse.mousemove);
+mouse.element.removeEventListener('touchend',mouse.mouseup);
+let tDrag=false;
+const tPos=t=>{const r=stage.getBoundingClientRect();return{x:t.clientX-r.left,y:t.clientY-r.top};};
+stage.addEventListener('touchstart',e=>{
+  if(e.target.closest('.prompt,#clear'))return;
+  const p=tPos(e.touches[0]);
+  if(Matter.Query.point(words.map(w=>w.body),p).length){tDrag=true;mouse.position.x=p.x;mouse.position.y=p.y;mouse.button=0;e.preventDefault();}
+},{passive:false});
+stage.addEventListener('touchmove',e=>{if(!tDrag)return;e.preventDefault();const p=tPos(e.touches[0]);mouse.position.x=p.x;mouse.position.y=p.y;},{passive:false});
+const tEnd=()=>{if(tDrag){tDrag=false;mouse.button=-1;}};
+stage.addEventListener('touchend',tEnd);stage.addEventListener('touchcancel',tEnd);
 Events.on(engine,'afterUpdate',()=>words.forEach(w=>{
   const p=w.body.position;
   w.el.style.transform=`translate(${p.x-w.w/2}px,${p.y-w.h/2}px) rotate(${w.body.angle}rad)`;
@@ -450,10 +469,10 @@ input.addEventListener('input',()=>document.getElementById('codebox').classList.
 setTimeout(()=>spawn('hello'),700);
 
 // ---- PROJECTS: 2 columns, hover for info ----
-document.getElementById('project-count').textContent=String(projects.length).padStart(2,'0')+' projects';
+
 document.getElementById('project-grid').innerHTML=projects.map((p,i)=>`
   <a class="ptile" href="${p.href}">
-    <img src="${p.img}" alt="${p.title}" loading="lazy">
+    <img src="${p.img}" data-fb="${p.fb||''}" alt="${p.title}" loading="lazy">
     <div class="pinfo">
       <span class="mono">${p.tag} // ${String(i+1).padStart(2,'0')}</span>
       <h3>${p.title}</h3>
@@ -462,6 +481,6 @@ document.getElementById('project-grid').innerHTML=projects.map((p,i)=>`
   </a>`).join('');
 </script>
 
-<script>document.querySelectorAll("img").forEach(function(i){function h(){i.style.display="none"}i.addEventListener("error",h);if(i.complete&&i.naturalWidth===0)h();});</script>
+<script>document.querySelectorAll("img").forEach(function(i){function h(){var f=i.getAttribute("data-fb");if(f&&!i.dataset.t){i.dataset.t=1;i.src=f;}else{i.style.display="none"}}i.addEventListener("error",h);if(i.complete&&i.naturalWidth===0)h();});</script>
 </body>
 </html>
