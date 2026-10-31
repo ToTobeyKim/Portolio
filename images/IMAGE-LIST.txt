@@ -102,16 +102,13 @@ Drop each image in this folder with the exact name below. [here] = already inclu
   [add] Doordash_6.png   (Final flow 3)
 
 == deadlock-magazine.html  (Deadlock-Publication)
-  [add] Deadlock-Publication_1.png   (Deadlock Publication)
-  [add] Deadlock-Publication_2.png   (Cover spread)
-  [add] Deadlock-Publication_3.png   (Table of contents)
-  [add] Deadlock-Publication_4.png   (Full spread introduction)
-  [add] Deadlock-Publication_5.png   (Typography spread)
-  [add] Deadlock-Publication_6.png   (Type detail)
-  [add] Deadlock-Publication_7.png   (Grid spread 1)
-  [add] Deadlock-Publication_8.png   (Grid spread 2)
-  [add] Deadlock-Publication_9.png   (Spread)
-  [add] Deadlock-Publication_10.png   (Spread)
+  [here] Deadlock-Publication_1.jpg   (Deadlock magazine cover)
+  [here] Deadlock-Publication_2.jpg   (The Patron spread)
+  [here] Deadlock-Publication_3.jpg   (Table of contents)
+  [here] Deadlock-Publication_4.jpg   (The Library of a Cursed Apple spread)
+  [here] Deadlock-Publication_5.jpg   (Structured Chaos spread)
+  [here] Deadlock-Publication_6.jpg   (Characters spread)
+  [here] Deadlock-Publication_7.jpg   (Environment spread)
 
 Homepage thumbnails (from projects.js):
   [here] Erik-Hates-Helvetica_9.jpg
@@ -124,4 +121,4 @@ Homepage thumbnails (from projects.js):
   [add] Google-Focus_1.png
   [add] OverEasy_1.png
   [add] Doordash_1.png
-  [add] Deadlock-Publication_11.png
+  [here] Deadlock-Publication_2.jpg

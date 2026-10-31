@@ -89,8 +89,7 @@ const projects = [
     title: "Deadlock Publication",
     tag: "Personal",
     desc: "An editorial publication exploring Valve's game Deadlock, imagining a game magazine sold under the title's own brand guidelines.",
-    img: "images/Deadlock-Publication_11.png",
-    fb: "https://tobeykim.com/wp-content/uploads/2026/02/Screenshot-2026-02-14-at-11.31.06-AM-1.png",
+    img: "images/Deadlock-Publication_2.jpg",
     href: "deadlock-magazine.html"
   }
 ];
