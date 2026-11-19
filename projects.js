@@ -33,8 +33,7 @@ const projects = [
     title: "let there be Light",
     tag: "Personal",
     desc: "A poster imagined for the Art Institute of Chicago, celebrating the creation of Garamond and its resilience through time via light.",
-    img: "images/Let-There-Be-Light_1.png",
-    fb: "https://tobeykim.com/wp-content/uploads/2026/02/Screenshot-2026-02-15-at-1.59.50-PM.png",
+    img: "images/Let-There-Be-Light_1.jpg",
     href: "let-there-be-light.html"
   },
   {
@@ -42,47 +41,41 @@ const projects = [
     tag: "Professional",
     desc: "A design collective built on the idea that design itself is the manifestation of intent. The logo reflects this philosophy through deliberate simplicity.",
     img: "images/Intent-Collective_1.jpg",
-    fb: "https://tobeykim.com/wp-content/uploads/2025/10/Intent-Wordmark-600px.jpg",
     href: "intent-collective.html"
   },
   {
     title: "Delight",
     tag: "Professional",
     desc: "A home improvement company built around the values of people, connection, and care. Brand identity designed to reflect warmth, reliability, and optimism.",
-    img: "images/Delight_1.png",
-    fb: "https://tobeykim.com/wp-content/uploads/2025/10/delight_600-1.png",
+    img: "images/Delight_1.jpg",
     href: "delight.html"
   },
   {
     title: "Epic Games Library",
     tag: "Personal",
     desc: "A redesign addressing usability issues in the Epic Games platform that create friction when purchasing, playing, and organizing games.",
-    img: "images/Epic-Games-Library_10.png",
-    fb: "https://tobeykim.com/wp-content/uploads/2025/10/epicgames_logo-1.png",
+    img: "images/Epic-Games-Library_1.jpg",
     href: "epic-games-library.html"
   },
   {
     title: "Google Focus",
     tag: "Personal",
     desc: "A Chrome extension that helps users maintain concentration and manage digital habits, blending seamlessly into the browsing experience.",
-    img: "images/Google-Focus_1.png",
-    fb: "https://tobeykim.com/wp-content/uploads/2025/10/googlefocus_logo.png",
+    img: "images/Google-Focus_3.jpg",
     href: "google-focus.html"
   },
   {
     title: "OverEasy",
     tag: "Personal",
     desc: "A recipe app promoting sustainability by reducing food waste. Its AI-powered Fridge feature suggests recipes from ingredients users already have.",
-    img: "images/OverEasy_1.png",
-    fb: "https://tobeykim.com/wp-content/uploads/2025/10/overeasy_logo2.png",
+    img: "images/OverEasy_1.jpg",
     href: "overeasy.html"
   },
   {
     title: "Doordash",
     tag: "Professional",
     desc: "A marketplace app created to connect with the fast-growing Discord community, bringing a fresh and engaging identity to the experience.",
-    img: "images/Doordash_1.png",
-    fb: "https://tobeykim.com/wp-content/uploads/2025/10/doordash_logo.png",
+    img: "images/Doordash_1.jpg",
     href: "doordash.html"
   },
   {

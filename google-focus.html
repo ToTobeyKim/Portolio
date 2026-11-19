@@ -4,9 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Google Focus | Tobey Kim</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,54 +28,78 @@
   <div class="wrap">
     <span class="mono cs-tag">Personal</span>
     <h1>Google Focus</h1>
-    <p class="cs-apps"><b>Applications:</b> Figma, Illustrator</p>
+    <p class="cs-apps"><b>Applications:</b> Figma</p>
     <div class="cs-cover">
-      <img src="images/Google-Focus_1.png" data-fb="https://tobeykim.com/wp-content/uploads/2025/10/googlefocus_logo.png" alt="Google Focus">
+      <img src="images/Google-Focus_1.jpg" alt="Google Focus logo">
     </div>
   </div>
 </section>
-<section class="cs-body"><div class="wrap"><p class="cs-note">Self-initiated concept project for portfolio purposes. Not affiliated with or endorsed by Google.</p><p class="lede">A Chrome extension that helps users block distracting websites, schedule focus periods, and build more mindful browsing habits.</p>
-    <div class="cs-section">
-      <h2>Problem</h2>
-      <div class="cs-section-content">
-        
-<p>Google plays an integral role in how people learn, work, and access information, yet offers limited native support for managing distraction. This project explores how a unified, distraction-reducing experience could fit inside the Google ecosystem.</p>
-<p>Following Google's minimalist naming convention (Docs, Maps, Focus), the product name communicates its function directly. The logo's central shape resembles an eye, symbolizing awareness and attention, rendered in Google's iconic four-color palette.</p>
 
+<section class="cs-body">
+  <div class="wrap">
+    <p class="lede">Google Focus is a digital extension designed to help users take control of their time online.</p>
+
+    <div class="cs-section">
+      <h2>Overview</h2>
+      <div class="cs-section-content">
+<p>It enables users to block distracting websites, schedule focus periods, and set boundaries around their digital habits.</p>
+<p>By integrating seamlessly into the browser, it encourages more mindful browsing and reduces the constant pull of online distractions.</p>
       </div>
     </div>
+
+    <div class="cs-section">
+      <h2>The Problem</h2>
+      <div class="cs-section-content">
+<p>As one of the most widely used platforms in the world, Google plays an integral role in how people learn, work, and access information. Yet, despite its influence, Google provides limited support for users seeking to manage distractions and maintain focus.</p>
+<p>This project explores how a unified, distraction-reducing experience could help users create a more productive and mindful environment while studying or working within the Google ecosystem.</p>
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <h2>Name and Brand</h2>
+      <div class="cs-section-content">
+<p>Google maintains a consistent and minimalist approach to naming its products, often combining the word “Google” with a single descriptor that clearly defines the product’s purpose such as Google Docs or Google Maps.</p>
+<p>Following this convention, Google Focus was named to directly communicate its primary function of helping users maintain concentration and reduce digital distractions. The name reflects Google’s straightforward branding philosophy, emphasizing clarity and intent.</p>
+<p>Google’s visual branding is characterized by simple structures and the use of its iconic four color palette. Each product logo is distinct yet instantly recognizable as part of the broader Google ecosystem. In keeping with this design language, the logo for Google Focus incorporates the same color sequence and minimalist style. The logo’s central shape resembles an eye, symbolizing awareness and attention, reinforcing the product’s core purpose of helping users stay focused and mindful during screen time.</p>
+      </div>
+    </div>
+
     <div class="cs-section">
       <h2>Research</h2>
       <div class="cs-section-content">
-        
-<p>Apple's Focus mode, a key competitor reference, is used by 56% of iPhone users to manage notifications and app access, with average session lengths reportedly increasing from 18 to 48 minutes after adoption, yet a significant share of users still never enable it, often due to setup friction.</p>
-<p>Google Focus targets students, professionals, and remote workers who want to limit distraction without leaving the Google ecosystem or relying on third-party tools.</p>
-
+<p>Apple Focus is a major competitor in the distraction management space. According to Business of Apps, 56 percent of iPhone users have used its Focus mode to control notifications and manage app access. According to Medium, some reports suggest that average focus sessions increased from 18 minutes to 48 minutes after adopting the feature. However, despite this level of adoption, there remains a significant segment of users who have never used Focus, potentially due to setup friction, lack of awareness, or the perception that it is unnecessary.</p>
+<p>Google Focus is designed for users who want to manage their digital habits without leaving the Google ecosystem. This includes students, professionals, and remote workers who spend much of their day online and want to limit distractions. The app aims to simplify focus management through intuitive scheduling integration rather than relying on third party apps/extensions.</p>
       </div>
     </div>
+
     <div class="cs-section">
       <h2>Design</h2>
       <div class="cs-section-content">
-        
-<p>The limited real estate of an extension popup required careful prioritization, only the most essential action, the on/off toggle, stays primary, with a dedicated settings tab holding secondary preferences.</p>
-<img src="images/Google-Focus_2.png" data-fb="https://tobeykim.com/wp-content/uploads/2025/10/image-13.png" alt="User flow">
-<div class="img-row">
-  <img src="images/Google-Focus_3.png" data-fb="https://tobeykim.com/wp-content/uploads/2025/10/image-14-1024x204.png" alt="Wireframe 1">
-  <img src="images/Google-Focus_4.png" data-fb="https://tobeykim.com/wp-content/uploads/2025/10/image-15-1024x203.png" alt="Wireframe 2">
+<p>A Google extension introduces unique design challenges compared to a standard app or website. The limited space within the extension popup requires careful prioritization of content and functionality.</p>
+<p>Only the most essential information and actions should be visible, while secondary elements are minimized or removed entirely. To address this, a settings button was added to allow users to adjust their preferences when needed, while the primary focus of the popup remains the toggle to turn Google Focus on or off quickly.</p>
+<p>The initial user journey is intentionally longer to provide a thorough setup process that helps users customize their experience from the start. Once configured, the settings allow users to easily adjust which websites they want to block and specify the times those restrictions should apply, giving them full control over their focus routine.</p>
+<p>The wireframe follows Google’s familiar “Get Started” flow, prompting users to input the websites they wish to block and set their preferred focus schedule. After the initial setup, the wireframe showcases the Google Focus extension interface, including the main popup design, settings menu, and a basic analytics view that provides insight into focus patterns and screen time reduction.</p>
+<p>The initial extension design contained too much visual clutter, which distracted from the primary focus toggle and weakened the overall hierarchy. In addition, important customization options such as language preferences and general settings were not clearly visible.</p>
+<p>To address this, a dedicated settings tab was introduced, providing users with an organized and accessible space to adjust their preferences without interfering with the main focus controls.</p>
+<img src="images/Google-Focus_2.png" alt="Google Focus user flow">
+<div class="img-row two match">
+  <img src="images/Google-Focus_3.jpg" alt="Google Focus get started screen">
+  <img src="images/Google-Focus_4.jpg" alt="Google Focus calendar">
 </div>
-<p>Early designs were too visually cluttered, weakening the primary toggle's hierarchy. A dedicated settings tab resolved this, isolating customization from the core focus control.</p>
-<div class="img-row two">
-  <img src="images/Google-Focus_5.png" data-fb="https://tobeykim.com/wp-content/uploads/2025/10/googlefocus_flow1-1024x981.png" alt="Final flow 1">
-  <img src="images/Google-Focus_6.png" data-fb="https://tobeykim.com/wp-content/uploads/2025/10/googlefocus_flow2-1-1024x736.png" alt="Final flow 2">
+<div class="img-row two match">
+  <img src="images/Google-Focus_5.jpg" alt="Google Focus schedule setup">
+  <img src="images/Google-Focus_6.jpg" alt="Google Focus analytics">
 </div>
-<p>Explore the full design file below.</p>
 <div class="embed-wrap">
   <div class="embed"><iframe src="https://embed.figma.com/design/fVFEdBeZHoSmf3OJFBPD6Z/Google-Focus?node-id=39-45&amp;embed-host=share" title="Google Focus design in Figma" loading="lazy" allowfullscreen></iframe></div>
   <a class="embed-link" href="https://www.figma.com/design/fVFEdBeZHoSmf3OJFBPD6Z/Google-Focus?node-id=39-45&amp;t=hkTu18L9pBRFbwpo-1" target="_blank" rel="noopener">Open the design in Figma ↗</a>
 </div>
-
       </div>
-    </div></div></section>
+    </div>
+
+  </div>
+</section>
+
 <div class="wrap">
   <div class="cs-nav">
     <a href="epic-games-library.html">
@@ -98,6 +119,6 @@
   </div>
 </footer>
 
-<script>document.querySelectorAll("img").forEach(function(i){function h(){var f=i.getAttribute("data-fb");if(f&&!i.dataset.t){i.dataset.t=1;i.src=f;}else{i.style.display="none"}}i.addEventListener("error",h);if(i.complete&&i.naturalWidth===0)h();});</script>
+<script>document.querySelectorAll("img").forEach(function(i){function h(){i.style.display="none"}i.addEventListener("error",h);if(i.complete&&i.naturalWidth===0)h();});</script>
 </body>
 </html>
