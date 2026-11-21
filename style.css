@@ -439,3 +439,23 @@ html body .wrap{padding-left:var(--gutter);padding-right:var(--gutter);}
 .cs-section-content>video{display:block;width:100%;height:auto;margin:32px 0;border:1px solid var(--line);border-radius:4px;background:#000;}
 /* single posters shown whole, never taller than the screen */
 .cs-section-content>img.poster{max-height:92vh;width:auto;max-width:100%;}
+
+/* ============ 6-column grid for project pages ============
+   48px gutters. Section titles sit in column 1, all text spans columns 2-5,
+   images and video run full width across columns 1-6. */
+:root{--g:48px;--col:calc((100% - 5 * var(--g)) / 6);}
+@media(min-width:761px){
+  .cs-section{grid-template-columns:repeat(6,minmax(0,1fr)) !important;column-gap:var(--g) !important;}
+  .cs-section h2{grid-column:1 / 2;font-size:min(2.8rem,2.2vw);overflow-wrap:normal;}
+  .cs-section-content>*{grid-column:2 / 6 !important;max-width:none !important;}
+  .cs-section-content>img,.cs-section-content>.img-row,.cs-section-content>video,.cs-section-content>.embed-wrap{grid-column:1 / -1 !important;}
+  .cs-section-content>img,.cs-section-content>video{max-width:100% !important;}
+  .cs-section-content>img.poster{max-height:92vh;width:auto;}
+  .cs-section-content>.img-row,.cs-section-content>.embed-wrap{max-width:100% !important;}
+  .cs-section-content>.img-row.narrow{max-width:920px !important;}
+  /* header block and opening sentence on columns 2-5 */
+  .cs-hero .wrap{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:var(--g);}
+  .cs-hero .wrap>*{grid-column:2 / 6;}
+  .cs-hero .wrap>.cs-cover{grid-column:1 / -1;}
+  .cs-body .lede{margin-left:calc(var(--col) + var(--g));width:calc(var(--col) * 4 + var(--g) * 3);max-width:none;}
+}
