@@ -26,7 +26,7 @@ const projects = [
     title: "Doha 2036",
     tag: "Personal",
     desc: "A bid identity for Doha, Qatar to host the 2036 Olympic Games, built around the light that passes through the mashrabiya.",
-    img: "images/Doha-2036_18.jpg",
+    img: "images/Doha-2036_1.jpg",
     href: "doha-2036.html"
   },
   {
