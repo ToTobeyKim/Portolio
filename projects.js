@@ -9,6 +9,27 @@
 
 const projects = [
   {
+    title: "Severance",
+    tag: "Personal",
+    desc: "A pop-up experience that turns Severance fans into Lumon employees, built to keep the show alive in the long stretch between seasons.",
+    img: "images/Severance_1.jpg",
+    href: "severance.html"
+  },
+  {
+    title: "Honda CB750 Chopper",
+    tag: "Professional",
+    desc: "A design proposal for SCAD’s electric Honda CB750 chopper, told through three posters about rebellion in 1970, today, and 2060.",
+    img: "images/Honda-CB750-Chopper_1.jpg",
+    href: "honda-cb750-chopper.html"
+  },
+  {
+    title: "Doha 2036",
+    tag: "Personal",
+    desc: "A bid identity for Doha, Qatar to host the 2036 Olympic Games, built around the light that passes through the mashrabiya.",
+    img: "images/Doha-2036_18.jpg",
+    href: "doha-2036.html"
+  },
+  {
     title: "Erik Hates Helvetica",
     tag: "Personal",
     desc: "A five-week typographic study of the world's most divisive typeface — researched, printed, and set in motion through the narrative of Erik HATES Helvetica.",
@@ -72,7 +93,7 @@ const projects = [
     href: "overeasy.html"
   },
   {
-    title: "Doordash",
+    title: "DoorDash",
     tag: "Professional",
     desc: "A marketplace app created to connect with the fast-growing Discord community, bringing a fresh and engaging identity to the experience.",
     img: "images/Doordash_1.jpg",

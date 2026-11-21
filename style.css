@@ -426,3 +426,16 @@ html body .wrap{padding-left:var(--gutter);padding-right:var(--gutter);}
 .cs-section-content li{font-size:1.2rem;line-height:1.6;}
 .cs-section-content p.credit{font-size:.9rem;opacity:.7;margin-top:-6px;}
 @media(max-width:760px){.cs-section-content .img-row.three,.cs-section-content .img-row.four{grid-template-columns:1fr 1fr;}}
+
+/* compact square grid for supporting pieces */
+.cs-section-content .img-row.square img{aspect-ratio:1/1;object-fit:cover;}
+/* equal-height rows of tall images, light crop */
+.cs-section-content .img-row.tall img{aspect-ratio:3/5;object-fit:cover;}
+/* transparent artwork floats on the page, no frame */
+.cs-section-content img.float{border:0;border-radius:0;background:none;}
+/* a pair of tall process images, kept to a readable width */
+.cs-section-content>.img-row.two.narrow{max-width:920px;width:100%;margin-left:auto;margin-right:auto;}
+/* videos inside sections */
+.cs-section-content>video{display:block;width:100%;height:auto;margin:32px 0;border:1px solid var(--line);border-radius:4px;background:#000;}
+/* single posters shown whole, never taller than the screen */
+.cs-section-content>img.poster{max-height:92vh;width:auto;max-width:100%;}
