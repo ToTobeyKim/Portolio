@@ -174,3 +174,25 @@ Name format: Project-Title_#.ext (numbers follow the order the images appear on 
   Deadlock-Publication_6.jpg   (Characters spread)
   Deadlock-Publication_7.jpg   (Twelve column grid over a spread)
   Deadlock-Publication_8.jpg   (Environment spread)
+
+== designers-are-multiversal.html
+  Designers-Are-Multiversal_1.jpg   (Homepage thumbnail, constellation crop of the all nine poster)
+  Designers-Are-Multiversal_2.jpg   (Static poster, all nine categories)
+  Designers-Are-Multiversal_3.jpg   (Visual Communication & Poster Design)
+  Designers-Are-Multiversal_4.jpg   (Spatial & Experiential Design)
+  Designers-Are-Multiversal_5.jpg   (Experience & Interaction Design)
+  Designers-Are-Multiversal_6.jpg   (Motion & Time-based Media)
+  Designers-Are-Multiversal_7.jpg   (Information & Data Design)
+  Designers-Are-Multiversal_8.jpg   (Packaging & Product Experience)
+  Designers-Are-Multiversal_9.jpg   (Digital Interface Design)
+  Designers-Are-Multiversal_10.jpg   (Editorial & Publication Design)
+  Designers-Are-Multiversal_11.jpg   (Brand Identity & Experience Systems)
+  Designers-Are-Multiversal_12.jpg   (System demo video poster frame)
+
+== header
+  Tobey-Kim_Wordmark.svg   (Vector wordmark, outlined from the resume, DM Sans Bold)
+
+MOTION FOLDER (homepage hover loops, silent, 4:3, 960 x 720)
+  motion/doha-thumb.mp4, motion/multiversal-thumb.mp4, motion/severance-thumb.mp4,
+  motion/helvetica-thumb.mp4, motion/amelie-thumb.mp4
+  To add one, set motion: "motion/<name>.mp4" on the project in projects.js.

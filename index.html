@@ -333,6 +333,19 @@ header .header-inner,header nav{align-items:baseline;}
 .work .section-head{margin-bottom:28px;}
 .stage{height:clamp(440px,calc(100vh - 367px),860px);height:clamp(440px,calc(100svh - 367px),860px);}
 @media(max-width:700px){.stage{height:clamp(420px,calc(100vh - 360px),640px);height:clamp(420px,calc(100svh - 360px),640px);}}
+
+/* ---- headline: two lines, break after Designer; wraps naturally on phones ---- */
+.hero h1{font-size:clamp(1.9rem,4.9vw,5.6rem);}
+@media(max-width:600px){.hero h1{font-size:clamp(1.9rem,9vw,2.6rem);line-height:1.08;}.hero h1 .l{white-space:normal;}}
+
+/* ---- motion thumbnails: the still swaps to the motion piece ---- */
+.ptile .pmotion{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s ease;pointer-events:none;background:transparent;}
+.ptile.playing .pmotion{opacity:1;}
+.ptile.playing img{filter:none;}
+.ptile .pmotion{transition:opacity .35s ease,transform .5s ease;}
+.ptile:hover .pmotion{transform:scale(1.04);}
+.ptile .pinfo{z-index:1;}
+@media(prefers-reduced-motion:reduce){.ptile .pmotion{display:none;}}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Archivo+Black&family=Bebas+Neue&family=Caveat:wght@600&family=DM+Serif+Display&family=Pacifico&family=Permanent+Marker&family=Playfair+Display:wght@700&family=Rubik+Mono+One&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -341,7 +354,7 @@ header .header-inner,header nav{align-items:baseline;}
 
 <header>
   <div class="header-inner">
-    <a href="index.html" class="logo">Tobey Kim</a>
+    <a href="index.html" class="logo" aria-label="Tobey Kim, home"><img src="images/Tobey-Kim_Wordmark.svg" alt="Tobey Kim" width="194" height="40"></a>
     <nav>
       <a href="#work">Work</a>
       <a href="#about">About</a>
@@ -356,7 +369,7 @@ header .header-inner,header nav{align-items:baseline;}
     <div class="stage" id="stage">
       <div class="intro-copy">
         <span class="mono hero-eyebrow">hello</span>
-        <h1><span class="l">I design experiences</span><span class="l">that bridge <em>technology</em></span><span class="l">and <em>human behavior</em>.</span></h1>
+        <h1><span class="l">I am a <em>Visual Experience Designer</em>.</span><span class="l">A <em>Psychologist</em>. A <em>Developer</em>.</span></h1>
         <p class="mono hero-close">end of intro</p>
       </div>
       <button id="clear" type="button">clear</button>
@@ -475,17 +488,76 @@ document.getElementById('clear').addEventListener('click',()=>{words.forEach(w=>
 input.addEventListener('input',()=>document.getElementById('codebox').classList.remove('idle'),{once:true});
 setTimeout(()=>spawn('hello'),700);
 
-// ---- PROJECTS: 2 columns, hover for info ----
+// ---- PROJECTS: 2 columns, hover for info, motion on hover ----
 
 document.getElementById('project-grid').innerHTML=projects.map((p,i)=>`
-  <a class="ptile" href="${p.href}">
+  <a class="ptile${p.motion?' has-motion':''}" href="${p.href}">
     <img src="${p.img}" data-fb="${p.fb||''}" alt="${p.title}" loading="lazy">
+    ${p.motion?`<video class="pmotion" data-src="${p.motion}" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>`:''}
     <div class="pinfo">
       <span class="mono">${p.tag} // ${String(i+1).padStart(2,'0')}</span>
       <h3>${p.title}</h3>
       <p>${p.desc}</p>
     </div>
   </a>`).join('');
+
+// Thumbnails stay still until they are looked at.
+// Mouse and trackpad: the motion piece plays while the pointer is over the tile.
+// Touch screens: the one tile nearest the middle of the screen plays, the rest pause.
+(function(){
+  const tiles=[...document.querySelectorAll('.ptile.has-motion')];
+  if(!tiles.length) return;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+  const canHover=matchMedia('(hover: hover) and (pointer: fine)');
+  const saveData=navigator.connection&&navigator.connection.saveData;
+
+  function start(t){
+    if(reduce.matches) return;
+    const v=t.querySelector('video');
+    if(!v.src){v.src=v.dataset.src;}
+    t.classList.add('playing');
+    try{v.currentTime=0;}catch(e){}
+    const pr=v.play(); if(pr&&pr.catch) pr.catch(()=>t.classList.remove('playing'));
+  }
+  function stop(t){
+    const v=t.querySelector('video');
+    t.classList.remove('playing');
+    if(v.src) v.pause();
+  }
+
+  // pointer devices
+  tiles.forEach(t=>{
+    t.addEventListener('mouseenter',()=>{ if(canHover.matches) start(t); });
+    t.addEventListener('mouseleave',()=>{ if(canHover.matches) stop(t); });
+    t.addEventListener('focus',()=>{ if(canHover.matches) start(t); });
+    t.addEventListener('blur',()=>{ if(canHover.matches) stop(t); });
+  });
+
+  // touch devices: pick the most prominent tile on screen
+  let current=null, ticking=false;
+  function pick(){
+    ticking=false;
+    if(canHover.matches||reduce.matches||saveData) { if(current&&!canHover.matches){stop(current);current=null;} return; }
+    const mid=innerHeight/2; let best=null, bestD=Infinity;
+    tiles.forEach(t=>{
+      const r=t.getBoundingClientRect();
+      const visible=Math.min(r.bottom,innerHeight)-Math.max(r.top,0);
+      if(visible<r.height*0.6) return;
+      const d=Math.abs((r.top+r.bottom)/2-mid);
+      if(d<bestD){bestD=d;best=t;}
+    });
+    if(best===current) return;
+    if(current) stop(current);
+    current=best;
+    if(current) start(current);
+  }
+  const onScroll=()=>{ if(!ticking){ticking=true;requestAnimationFrame(pick);} };
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',onScroll);
+  canHover.addEventListener&&canHover.addEventListener('change',()=>{tiles.forEach(stop);current=null;onScroll();});
+  document.addEventListener('visibilitychange',()=>{ if(document.hidden&&current){stop(current);current=null;} else onScroll(); });
+  onScroll();
+})();
 </script>
 
 <script>document.querySelectorAll("img").forEach(function(i){function h(){var f=i.getAttribute("data-fb");if(f&&!i.dataset.t){i.dataset.t=1;i.src=f;}else{i.style.display="none"}}i.addEventListener("error",h);if(i.complete&&i.naturalWidth===0)h();});</script>
