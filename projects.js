@@ -18,6 +18,13 @@ const projects = [
     motion: "motion/doha-thumb.mp4"
   },
   {
+    title: "Honda CB750 Chopper",
+    tag: "Professional",
+    desc: "A design proposal for SCAD’s electric Honda CB750 chopper, told through three posters about rebellion in 1970, today, and 2060.",
+    img: "images/Honda-CB750-Chopper_1.jpg",
+    href: "honda-cb750-chopper.html"
+  },
+  {
     title: "Designers are Multiversal",
     tag: "Personal",
     desc: "A generative data visualization of the SCAD Graphic Design curriculum, where 35 courses become a field of stars and every kind of design work draws its own constellation.",
@@ -32,13 +39,6 @@ const projects = [
     img: "images/Severance_1.jpg",
     href: "severance.html",
     motion: "motion/severance-thumb.mp4"
-  },
-  {
-    title: "Honda CB750 Chopper",
-    tag: "Professional",
-    desc: "A design proposal for SCAD’s electric Honda CB750 chopper, told through three posters about rebellion in 1970, today, and 2060.",
-    img: "images/Honda-CB750-Chopper_1.jpg",
-    href: "honda-cb750-chopper.html"
   },
   {
     title: "Erik Hates Helvetica",
